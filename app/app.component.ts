@@ -3,6 +3,7 @@ import {OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
 import {HeroService} from './hero.service';
+import {LoggerService} from './services/logger.service';
 
 @Component({
   selector: 'my-app',
@@ -24,7 +25,7 @@ import {HeroService} from './hero.service';
   `],
   templateUrl: 'app/hero-list-component.html',
     directives: [HeroDetailComponent],
-    providers: [HeroService]
+    providers: [HeroService, LoggerService]
 })
 
 export class AppComponent implements OnInit {
@@ -36,12 +37,13 @@ export class AppComponent implements OnInit {
     name: 'Windstorm'
   };
 
-  constructor(private _heroService: HeroService) { 
+  constructor(private _heroService: HeroService, private _loggerService: LoggerService) { 
 
   }
 
   ngOnInit() {
     this.getHeroes();
+    this._loggerService.log('getting heroes');
   }
 
   getHeroes() {
