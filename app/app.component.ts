@@ -2,6 +2,7 @@ import {Component} from 'angular2/core';
 import {OnInit} from 'angular2/core';
 import {Hero} from './hero';
 import {HeroDetailComponent} from './hero-detail.component';
+import {HeroFormComponent} from './hero-form.component';
 import {HeroService} from './hero.service';
 import {LoggerService} from './services/logger.service';
 
@@ -24,8 +25,8 @@ import {LoggerService} from './services/logger.service';
     .selected { background-color: #EEE; color: #369; }
   `],
   templateUrl: 'app/hero-list-component.html',
-    directives: [HeroDetailComponent],
-    providers: [HeroService, LoggerService]
+  directives: [HeroDetailComponent, HeroFormComponent],
+  providers: [HeroService, LoggerService]
 })
 
 export class AppComponent implements OnInit {
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
   public heroes: Hero[];
   public hero: Hero = {
     id: 1,
-    name: 'Windstorm'
+    name: 'Windstorm',
+    power: 'Really Smart'
   };
 
   constructor(private _heroService: HeroService, private _loggerService: LoggerService) { 
